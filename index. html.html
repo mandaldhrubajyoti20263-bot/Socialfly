@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialFly | Luxury SMM Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .luxury-card {
+            border: 1px solid #f3f4f6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .luxury-card:hover {
+            border-color: #facc15;
+            transform: translateY(-2px);
+        }
+        .input-error { border-color: #ef4444 !important; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50 pb-24">
+
+    <!-- Header & Grid Service Menu -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-2xl font-bold">Social<span class="text-yellow-500">Fly</span></span>
+                <div class="flex items-center space-x-2 text-[10px] font-bold text-gray-400 bg-gray-50 px-3 py-1 rounded-full border">
+                    <i class="fas fa-check-circle text-yellow-500"></i>
+                    <span>2 YEARS TRUSTED EXPERIENCE</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-2">
+                <button onclick="showPage('followers')" id="btn-followers" class="service-btn py-3 rounded-xl bg-white border text-xs font-bold flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+                    <i class="fas fa-users text-yellow-500"></i>
+                    <span>Followers</span>
+                </button>
+                <button onclick="showPage('likes')" id="btn-likes" class="service-btn py-3 rounded-xl bg-white border text-xs font-bold flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+                    <i class="fas fa-heart text-yellow-500"></i>
+                    <span>Likes</span>
+                </button>
+                <button onclick="showPage('views')" id="btn-views" class="service-btn py-3 rounded-xl bg-white border text-xs font-bold flex flex-col items-center justify-center gap-1 active:scale-95 transition">
+                    <i class="fas fa-play text-yellow-500"></i>
+                    <span>Views</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6">
+
+        <!-- Page: FOLLOWERS (Default) -->
+        <section id="page-followers" class="page-content">
+            <h2 class="text-lg font-bold mb-4">Instagram Followers</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-4 rounded-2xl luxury-card text-center">
+                    <p class="text-xl font-bold">1k</p>
+                    <p class="text-yellow-600 font-bold text-sm">₹100</p>
+                    <button onclick="openModal('Followers', '1k', 100)" class="mt-3 w-full bg-gray-900 text-white py-2 rounded-lg text-[10px] font-bold uppercase">Order Now</button>
+                </div>
+                <div class="bg-white p-4 rounded-2xl luxury-card text-center">
+                    <p class="text-xl font-bold">3k</p>
+                    <p class="text-yellow-600 font-bold text-sm">₹299</p>
+                    <button onclick="openModal('Followers', '3k', 299)" class="mt-3 w-full bg-gray-900 text-white py-2 rounded-lg text-[10px] font-bold uppercase">Order Now</button>
+                </div>
+                <div class="bg-white p-4 rounded-2xl luxury-card text-center">
+                    <p class="text-xl font-bold">5k</p>
+                    <p class="text-yellow-600 font-bold text-sm">₹499</p>
+                    <button onclick="openModal('Followers', '5k', 499)" class="mt-3 w-full bg-gray-900 text-white py-2 rounded-lg text-[10px] font-bold uppercase">Order Now</button>
+                </div>
+                <div class="bg-white p-4 rounded-2xl luxury-card text-center border-yellow-200">
+                    <p class="text-xl font-bold text-yellow-500">10k</p>
+                    <p class="text-yellow-600 font-bold text-sm">₹779</p>
+                    <button onclick="openModal('Followers', '10k', 779)" class="mt-3 w-full bg-yellow-500 text-black py-2 rounded-lg text-[10px] font-bold uppercase">Order Now</button>
+                </div>
+                <div class="bg-white p-4 rounded-2xl luxury-card text-center">
+                    <p class="text-xl font-bold">20k</p>
+                    <p class="text-yellow-600 font-bold text-sm">₹1499</p>
+                    <button onclick="openModal('Followers', '20k', 1499)" class="mt-3 w-full bg-gray-900 text-white py-2 rounded-lg text-[10px] font-bold uppercase">Order Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: LIKES -->
+        <section id="page-likes" class="page-content hidden">
+            <button onclick="showPage('followers')" class="mb-4 text-xs font-bold text-gray-500 flex items-center gap-1">
+                <i class="fas fa-arrow-left"></i> Back to Followers
+            </button>
+            <div class="bg-white p-6 rounded-3xl luxury-card">
+                <h2 class="text-lg font-bold mb-4">Instagram Likes (₹45/1k)</h2>
+                <div class="space-y-4">
+                    <input type="number" id="like-qty" value="1000" oninput="calc('likes')" class="w-full bg-gray-50 p-4 rounded-xl border-none outline-none font-bold text-lg">
+                    <div class="flex justify-between items-center bg-yellow-50 p-4 rounded-xl">
+                        <span class="text-sm font-bold">Price: ₹<span id="like-price">45</span></span>
+                        <button onclick="orderCustom('Likes')" class="bg-black text-white px-6 py-2 rounded-lg font-bold text-xs uppercase">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: VIEWS -->
+        <section id="page-views" class="page-content hidden">
+            <button onclick="showPage('followers')" class="mb-4 text-xs font-bold text-gray-500 flex items-center gap-1">
+                <i class="fas fa-arrow-left"></i> Back to Followers
+            </button>
+            <div class="bg-white p-6 rounded-3xl luxury-card">
+                <h2 class="text-lg font-bold mb-4">Instagram Views (₹10/1k)</h2>
+                <div class="space-y-4">
+                    <input type="number" id="view-qty" value="1000" oninput="calc('views')" class="w-full bg-gray-50 p-4 rounded-xl border-none outline-none font-bold text-lg">
+                    <div class="flex justify-between items-center bg-gray-100 p-4 rounded-xl">
+                        <span class="text-sm font-bold">Price: ₹<span id="view-price">10</span></span>
+                        <button onclick="orderCustom('Views')" class="bg-black text-white px-6 py-2 rounded-lg font-bold text-xs uppercase">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Checkout Modal -->
+    <div id="modal" class="fixed inset-0 z-[100] bg-black/60 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden animate-up max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-sm uppercase">Order Summary</h3>
+                    <button onclick="closeModal()" class="text-gray-300 hover:text-black"><i class="fas fa-times"></i></button>
+                </div>
+
+                <!-- UPI & QR -->
+                <div class="bg-yellow-50 p-4 rounded-2xl text-center mb-5 border border-yellow-100">
+                    <p class="text-[9px] font-bold text-yellow-700 mb-3 uppercase tracking-widest">Payment QR</p>
+                    <img id="qr-img" src="" class="w-32 h-32 mx-auto rounded-lg shadow-sm mb-2 border-2 border-white">
+                    <p class="text-[10px] font-bold text-gray-500">UPI ID: 9085495628@fam</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="grid grid-cols-2 gap-2 text-[10px]">
+                        <div class="bg-gray-50 p-3 rounded-xl border"><p class="text-gray-400">SERVICE</p><p id="m-serv" class="font-bold truncate"></p></div>
+                        <div class="bg-gray-50 p-3 rounded-xl border"><p class="text-gray-400">PRICE</p><p id="m-price" class="font-bold text-yellow-600"></p></div>
+                    </div>
+                    
+                    <input type="text" id="c-name" oninput="val()" placeholder="Enter Your Name" class="w-full p-3.5 bg-gray-50 rounded-xl outline-none font-bold text-sm border focus:bg-white focus:border-yellow-400">
+                    
+                    <div class="relative">
+                        <input type="url" id="c-link" oninput="val()" placeholder="Instagram Profile/Post Link" class="w-full p-3.5 bg-gray-50 rounded-xl outline-none font-bold text-sm border focus:bg-white transition-all">
+                        <p id="link-err" class="text-[9px] text-red-500 font-bold mt-1 hidden italic">! Please provide a valid Instagram link</p>
+                    </div>
+
+                    <input type="text" id="c-utr" oninput="val()" maxlength="12" placeholder="12 Digit Transaction ID / UTR" class="w-full p-3.5 bg-gray-50 rounded-xl outline-none font-bold text-sm border focus:bg-white focus:border-yellow-400">
+
+                    <button id="conf-btn" onclick="submit()" disabled class="w-full py-4 rounded-2xl font-bold text-sm bg-orange-300 text-white cursor-not-allowed transition">
+                        CONFIRM ORDER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Trust Footer -->
+    <div class="fixed bottom-0 w-full bg-white border-t p-3 flex justify-around text-[8px] font-bold text-gray-400 z-50">
+        <div class="flex items-center gap-1"><i class="fas fa-shield-alt text-green-500"></i> TRUSTED PANEL</div>
+        <div class="flex items-center gap-1"><i class="fas fa-star text-yellow-500"></i> 2 YEARS EXP</div>
+        <div class="flex items-center gap-1"><i class="fas fa-check-double text-blue-500"></i> SECURE UPI</div>
+    </div>
+
+    <script>
+        let orderObj = { s: '', q: '', p: 0 };
+
+        window.onload = () => showPage('followers');
+
+        function showPage(id) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.service-btn').forEach(b => b.classList.remove('bg-yellow-50', 'border-yellow-400', 'text-black'));
+            
+            document.getElementById('page-' + id).classList.remove('hidden');
+            document.getElementById('btn-' + id).classList.add('bg-yellow-50', 'border-yellow-400', 'text-black');
+            window.scrollTo(0,0);
+        }
+
+        function calc(type) {
+            if(type === 'likes') {
+                let q = document.getElementById('like-qty').value;
+                document.getElementById('like-price').innerText = Math.max(0, (q / 1000) * 45).toFixed(0);
+            } else {
+                let q = document.getElementById('view-qty').value;
+                document.getElementById('view-price').innerText = Math.max(0, (q / 1000) * 10).toFixed(0);
+            }
+        }
+
+        function orderCustom(type) {
+            let q = type === 'Likes' ? document.getElementById('like-qty').value : document.getElementById('view-qty').value;
+            let p = type === 'Likes' ? document.getElementById('like-price').innerText : document.getElementById('view-price').innerText;
+            if(q < 1000) return alert("Minimum 1000 dorkar");
+            openModal(type, (q/1000)+'k', p);
+        }
+
+        function openModal(s, q, p) {
+            orderObj = { s, q, p };
+            document.getElementById('m-serv').innerText = s + " (" + q + ")";
+            document.getElementById('m-price').innerText = "₹" + p;
+            document.getElementById('qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=9085495628@fam&am=${p}&cu=INR`;
+            document.getElementById('modal').classList.remove('hidden');
+            val();
+        }
+
+        function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+        function val() {
+            const n = document.getElementById('c-name').value.trim();
+            const l = document.getElementById('c-link').value.trim();
+            const u = document.getElementById('c-utr').value.trim();
+            const b = document.getElementById('conf-btn');
+            const lErr = document.getElementById('link-err');
+            const lInp = document.getElementById('c-link');
+
+            // Instagram link validation regex
+            const isInsta = /(instagram\.com|instagr\.am)/.test(l.toLowerCase());
+            const isUtrValid = /^\d{12}$/.test(u);
+
+            // UI Feedback for link
+            if(l.length > 5 && !isInsta) {
+                lErr.classList.remove('hidden');
+                lInp.classList.add('input-error');
+            } else {
+                lErr.classList.add('hidden');
+                lInp.classList.remove('input-error');
+            }
+
+            if(n.length > 2 && isInsta && isUtrValid) {
+                b.disabled = false;
+                b.classList.replace('bg-orange-300', 'bg-yellow-400');
+                b.classList.replace('text-white', 'text-black');
+                b.classList.remove('cursor-not-allowed');
+            } else {
+                b.disabled = true;
+                b.classList.add('bg-orange-300', 'text-white', 'cursor-not-allowed');
+                b.classList.remove('bg-yellow-400', 'text-black');
+            }
+        }
+
+        function submit() {
+            const n = document.getElementById('c-name').value;
+            const l = document.getElementById('c-link').value;
+            const u = document.getElementById('c-utr').value;
+            const text = `*SOCIALFLY NEW ORDER*%0A-----------------%0A*Service:* ${orderObj.s}%0A*Qty:* ${orderObj.q}%0A*Price:* ₹${orderObj.p}%0A%0A*Name:* ${n}%0A*Link:* ${l}%0A*UTR:* ${u}%0A-----------------%0A_Trusted SMM - 2 Years Experience_`;
+            window.open(`https://wa.me/9085495628?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
+
